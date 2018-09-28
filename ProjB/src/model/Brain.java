@@ -1,5 +1,14 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.math.BigInteger;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.Random;
 
@@ -20,6 +29,28 @@ public class Brain
 	public String doTime()
 	{
 		return (new Date()).toString();
+	}
+	
+	public String doPrime(int length)
+	{
+		BigInteger result = BigInteger.probablePrime((int) Math.floor(3.3*length), new Random());
+		return result.toString();
+	}
+
+	public String doTcp(int length) throws UnknownHostException, IOException {
+		try {
+			Socket socket = new Socket(TCP_SERVER, TCP_PORT);
+			PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+			pw.write("prime " + length);
+		    BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		    
+			br.read();
+			String result = br.readLine();
+			br.close();
+			return result;
+		} catch (Exception e) {
+			return "Error";
+		} 
 	}
 	
 }
