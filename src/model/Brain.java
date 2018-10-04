@@ -160,6 +160,7 @@ public class Brain
 		    System.out.println(htmlTableCode.toString());
 		    
 		    return htmlTableCode.toString();
+		    
 //		    DOMSource source = new DOMSource(doc);
 //		    FileWriter writer = new FileWriter(new File("/eecs/home/ragheban/eclipse-workspace/ProjB/WebContent/Roster.xml"));
 //		    StreamResult resultFiled = new StreamResult(writer);
